@@ -23,10 +23,13 @@ import com.example.api.controller.dtos.EventoDtoOut;
 import com.example.api.controller.dtos.EventoDtoUpdateOut;
 import com.example.api.service.EventoServiceImpl;
 
+import jakarta.transaction.Transactional;
+
 
 @LoggerWatcher
 @RestController
 @RequestMapping("/eventos")
+@Transactional
 @CrossOrigin("*")
 public class EventosController implements RestControllerNeptune<EventoDtoIn, EventoDtoOut> {
     @Autowired

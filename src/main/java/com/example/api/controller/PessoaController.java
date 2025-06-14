@@ -22,10 +22,13 @@ import com.example.api.controller.dtos.PessoaDtoOut;
 import com.example.api.service.PessoaServiceImpl;
 import com.example.api.utils.LoggerWatcher;
 
+import jakarta.transaction.Transactional;
+
 
 @LoggerWatcher
 @RestController
 @RequestMapping("/pessoa")
+@Transactional
 @CrossOrigin("*")
 public class PessoaController implements RestControllerNeptune<PessoaDtoIn,PessoaDtoOut> {
 
