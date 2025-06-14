@@ -58,13 +58,14 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
     @Override
     public String delete(Long id) {
         try {
-            repository.delete(repository.findById(id).orElseThrow());
+            Pessoa p = repository.findById(id).orElseThrow();
+            repository.delete(p);
             return "Errado";
         } catch(RuntimeException e) {
             return "ERRO";
         }
     }
-    @Override
+    
     public PessoaDtoOut update(PessoaDtoIn ev, Long id) {
         Pessoa p = repository.findById(id).orElseThrow();
         p.setAtividade(ev.isAtividade());
