@@ -11,5 +11,5 @@ public interface ServiceEventos <OUT,IN,UP> {
 
     public String delete(Long id);
 
-    public UP update(IN ev,Long id);
+    public UP update(UP ev,Long id);
 }

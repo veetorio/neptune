@@ -79,6 +79,7 @@ public class EventoServiceImpl implements ServiceEventos<EventoDtoOut,EventoDtoI
         }
     }
     
+    @Override
     public EventoDtoUpdateOut update(EventoDtoUpdateOut ev,Long id) {
         try {
             Evento evento = repository.findById(id).orElseThrow();
@@ -96,4 +97,12 @@ public class EventoServiceImpl implements ServiceEventos<EventoDtoOut,EventoDtoI
             return null;
         }
     }
+
+    @Override
+    public EventoDtoOut findById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+  
 }
