@@ -60,9 +60,9 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
         try {
             Pessoa p = repository.findById(id).orElseThrow();
             repository.delete(p);
-            return "Errado";
+            return "Deletado com sucesso";
         } catch(RuntimeException e) {
-            return "ERRO";
+            return "informamos que houver erro na deleção";
         }
     }
 
