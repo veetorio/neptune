@@ -10,6 +10,6 @@ RUN mvn clean install -DskipTests
 
 # Etapa de runtime
 FROM openjdk:17-jdk-slim
-COPY --from=build /app/target/*.jar api.jar
+COPY --from=build /target/*.jar api.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "api.jar"]
