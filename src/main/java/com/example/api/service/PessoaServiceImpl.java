@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.api.controller.dtos.PessoaDtoIn;
 import com.example.api.controller.dtos.PessoaDtoOut;
@@ -17,7 +18,6 @@ import com.example.api.repository.EventoRepository;
 import com.example.api.repository.PessoaRepository;
 import com.example.api.service.interfaces.ServiceInterface;
 
-import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
