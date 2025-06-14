@@ -2,7 +2,7 @@ package com.example.api.controller;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +22,6 @@ import com.example.api.controller.dtos.PessoaDtoOut;
 import com.example.api.service.PessoaServiceImpl;
 import com.example.api.utils.LoggerWatcher;
 
-import jakarta.websocket.server.PathParam;
 
 @LoggerWatcher
 @RestController
@@ -39,9 +38,8 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn,Pesso
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @PutMapping
-    
-    public ResponseEntity<PessoaDtoOut> updateEntity(@RequestBody PessoaDtoIn entity,Long id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<PessoaDtoOut> updateEntity(@RequestBody PessoaDtoIn entity,@PathVariable Long id) {
         return ResponseEntity.ok().body(service.update(entity, id));
     }
 
