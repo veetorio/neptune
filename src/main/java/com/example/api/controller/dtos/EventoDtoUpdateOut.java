@@ -8,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EventoDtoUpdateOut {
-    private Long idEvento;
     private String nome;
     private LocalDate dateGo;
     private LocalDate dateEnd;
     private LocalTime timeGo;
     private LocalTime timeEnd;
+    private boolean atividade;
 
     private int arrecadacao;
     private int investido;

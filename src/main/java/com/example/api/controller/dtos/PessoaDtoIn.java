@@ -11,6 +11,10 @@ public class PessoaDtoIn {
     private String nome;
     
     private LocalDate nascimento;
+    
+    private boolean atividade;
 
     private String local;
+
+    private String senha;
 }

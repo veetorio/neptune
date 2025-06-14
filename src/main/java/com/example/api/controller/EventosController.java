@@ -23,6 +23,7 @@ import com.example.api.controller.dtos.EventoDtoOut;
 import com.example.api.controller.dtos.EventoDtoUpdateOut;
 import com.example.api.service.EventoServiceImpl;
 
+
 @LoggerWatcher
 @RestController
 @RequestMapping("/eventos")
@@ -33,7 +34,7 @@ public class EventosController implements RestControllerNeptune<EventoDtoIn, Eve
 
     @GetMapping("/{id}")
     public ResponseEntity<EventoDtoUpdateOut> getEntityUpdate(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.findById(id));
+        return ResponseEntity.ok().body(service.findUpdateById(id));
     }
 
     @PutMapping("/{id}")
@@ -54,16 +55,19 @@ public class EventosController implements RestControllerNeptune<EventoDtoIn, Eve
         return ResponseEntity.ok().body(service.delete(id));
     }
 
-    @Override
-    public ResponseEntity<EventoDtoOut> getEntity(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEntity'");
-    }
+
 
     @GetMapping
     @Override
     public ResponseEntity<List<EventoDtoOut>> getAllEntitys() {
         return ResponseEntity.ok().body(service.findAll());
     }
+
+    @Override
+    public ResponseEntity<EventoDtoOut> getEntity(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEntity'");
+    }
+
 
 }

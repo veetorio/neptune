@@ -15,5 +15,4 @@ public interface ServiceInterface <OUT,IN> {
 
     public String delete(Long id);
 
-    public OUT update(EventoDtoUpdateOut ev,Long id);
 }

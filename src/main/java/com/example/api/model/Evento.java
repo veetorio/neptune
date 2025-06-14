@@ -2,10 +2,12 @@ package com.example.api.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.lang.Nullable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,7 +53,7 @@ public class Evento {
         joinColumns = @JoinColumn(name="FkEvento"),
         inverseJoinColumns = @JoinColumn(name="FkPessoa")
     )
-    private List<Pessoa> escricao;
+    private List<Pessoa> escricoes = new ArrayList<Pessoa>();
 
 
 }
