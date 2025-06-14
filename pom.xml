@@ -86,17 +86,30 @@
 
 	<build>
 		<plugins>
+			<!-- Plugin Spring Boot para criar o JAR executável -->
 			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
 				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>com.example.api.ApiApplication</mainClass>
-						</manifest>
-					</archive>
+					<mainClass>com.example.api.ApiApplication</mainClass>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
+
+			<!-- Plugin para compilação (mantido para MapStruct e Lombok) -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -120,5 +133,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
