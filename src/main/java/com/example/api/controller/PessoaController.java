@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,7 +40,8 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn,Pesso
     }
 
     @PutMapping
-    public ResponseEntity<PessoaDtoOut> updateEntity(Long id, PessoaDtoIn entity) {
+    
+    public ResponseEntity<PessoaDtoOut> updateEntity(@RequestBody PessoaDtoIn entity,Long id) {
         return ResponseEntity.ok().body(service.update(entity, id));
     }
 
@@ -51,7 +53,7 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn,Pesso
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEntity(@PathParam(value="id") Long id) {
+    public ResponseEntity<String> deleteEntity(@PathVariable Long id) {
         return ResponseEntity.ok(service.delete(id));
     }
 
