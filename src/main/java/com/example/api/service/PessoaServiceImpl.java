@@ -17,7 +17,10 @@ import com.example.api.repository.EventoRepository;
 import com.example.api.repository.PessoaRepository;
 import com.example.api.service.interfaces.ServiceInterface;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDtoIn> {
     @Autowired
     private PessoaRepository repository;
@@ -80,6 +83,7 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
         return mapper.mapperToDtoOut(p);
     }
 
+    @SuppressWarnings("null")
     public void subscribe(Long eventId,Long usuarioId) {
         try {
             Pessoa p = repository.findById(usuarioId).orElseThrow();

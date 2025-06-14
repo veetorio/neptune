@@ -13,8 +13,11 @@ import com.example.api.model.Evento;
 import com.example.api.repository.EventoRepository;
 import com.example.api.service.interfaces.ServiceEventos;
 
+import jakarta.transaction.Transactional;
+
 
 @Service
+@Transactional
 public class EventoServiceImpl implements ServiceEventos<EventoDtoOut,EventoDtoIn,EventoDtoUpdateOut> {
     @Autowired
     private EventoRepository repository;
