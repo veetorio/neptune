@@ -92,7 +92,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.example.ApiApplication</mainClass>
+							<mainClass>com.example.api.ApiApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
