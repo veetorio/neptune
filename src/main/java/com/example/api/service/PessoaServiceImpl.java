@@ -65,12 +65,14 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
             return "ERRO";
         }
     }
-    
+
     public PessoaDtoOut update(PessoaDtoIn ev, Long id) {
         Pessoa p = repository.findById(id).orElseThrow();
         p.setAtividade(ev.isAtividade());
         p.setNome(ev.getNome());
         p.setNascimento(ev.getNascimento());
+        int idade = Period.between(p.getNascimento(),LocalDate.now()).getYears();
+        p.setIdade(idade);
         p.setLocal(ev.getLocal());
 
         repository.save(p);
