@@ -6,8 +6,8 @@ RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
 RUN apt-get install maven -y
-# RUN mvn clean install -DskipTests
-RUN ./mvnw clean install -DskipTests
+RUN mvn clean install -DskipTests
+# RUN ./mvnw clean install -DskipTests
 
 
 # Etapa de runtime
