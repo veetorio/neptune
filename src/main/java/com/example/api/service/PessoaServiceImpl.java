@@ -24,20 +24,21 @@ import com.example.api.service.interfaces.ServiceInterface;
 public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDtoIn> {
     @Autowired
     private PessoaRepository repository;
-    @Autowired
-    private EventoRepository EventoRepository;
+
     @Autowired 
     private PessoaMapper mapper;
 
     @Override
     public PessoaDtoOut create(PessoaDtoIn entity) {
         try {
-            Pessoa pessoa = mapper.mapperToOriginPessoa(entity);
+            Pessoa pessoa = mapper.mapperDTOoriginIn(entity);
+            PessoaDtoOut pessoaOut = mapper.mapToDtoOut(pessoa);
         
-            int idade = Period.between(pessoa.getNascimento(),LocalDate.now()).getYears();
-            pessoa.setIdade(idade);
             repository.save(pessoa);
-            return mapper.mapperToDtoOut(pessoa);
+            int idade = Period.between(pessoa.getNascimento(),LocalDate.now()).getYears();
+
+            pessoaOut.setIdade(idade);
+            return pessoaOut;
         } catch (RuntimeException e) {
             return null;
         }
@@ -49,14 +50,19 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
         return repository
         .findAll()
         .stream()
-        .map(e -> mapper.mapperToDtoOut(e))
+        .map(e -> {
+            PessoaDtoOut p = mapper.mapToDtoOut(e);
+            int idade = Period.between(e.getNascimento(),LocalDate.now()).getYears();
+            p.setIdade(idade);
+            return p;
+        })
         .toList();
 
     }
     @Override
     public PessoaDtoOut findById(Long id) {
         Pessoa pessoa = repository.findById(id).orElseThrow();
-        return mapper.mapperToDtoOut(pessoa);
+        return mapper.mapToDtoOut(pessoa);
     }
     @Override
     public String delete(Long id) {
@@ -69,35 +75,21 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
         }
     }
 
-    public PessoaDtoOut update(PessoaDtoIn ev, Long id) {
+    @Override
+    public PessoaDtoOut update(Long id,PessoaDtoIn ev) {
         Pessoa p = repository.findById(id).orElseThrow();
         p.setAtividade(ev.isAtividade());
         p.setNome(ev.getNome());
         p.setNascimento(ev.getNascimento());
-        int idade = Period.between(p.getNascimento(),LocalDate.now()).getYears();
-        p.setIdade(idade);
+
         p.setLocal(ev.getLocal());
 
         repository.save(p);
 
-        return mapper.mapperToDtoOut(p);
+        return mapper.mapToDtoOut(p);
     }
 
-    @SuppressWarnings("null")
-    public void subscribe(Long eventId,Long usuarioId) {
-        try {
-            Pessoa p = repository.findById(usuarioId).orElseThrow();
-            Evento e = EventoRepository.findById(eventId).orElseThrow();
-            p.getEventos().add(e);
-            e.getEscricoes().add(p);
-            e.setEscricoes(e.getEscricoes());
-            p.setEventos(p.getEventos());
 
-            repository.save(p);
-        } catch(NoSuchElementException e) {
-            System.out.println("Elemento não foi encontrado");
-        }
-    }
     
 
     

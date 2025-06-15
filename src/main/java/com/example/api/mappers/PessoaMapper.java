@@ -8,8 +8,5 @@ import com.example.api.controller.dtos.PessoaDtoOut;
 import com.example.api.model.Pessoa;
 
 @Mapper(componentModel=MappingConstants.ComponentModel.SPRING)
-public interface PessoaMapper {
-    Pessoa mapperToOriginPessoa(PessoaDtoIn pessoa);
-    PessoaDtoOut mapperToDtoOut(Pessoa pessoa);
-    Pessoa mapperToIn(PessoaDtoIn pessoa);
+public interface PessoaMapper extends MapperCaseOut<Pessoa,PessoaDtoOut> , MapperCaseIn<PessoaDtoIn,Pessoa> {
 }

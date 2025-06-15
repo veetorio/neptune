@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.api.controller.controllerModel.RestControllerNeptune;
 import com.example.api.controller.dtos.EventoDtoIn;
 import com.example.api.controller.dtos.EventoDtoOut;
-import com.example.api.controller.dtos.EventoDtoUpdateOut;
 import com.example.api.service.EventoServiceImpl;
 
 import jakarta.transaction.Transactional;
@@ -35,15 +34,16 @@ public class EventosController implements RestControllerNeptune<EventoDtoIn, Eve
     @Autowired
     private EventoServiceImpl service;
 
+    @Override
     @GetMapping("/{id}")
-    public ResponseEntity<EventoDtoUpdateOut> getEntityUpdate(@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.findUpdateById(id));
+    public ResponseEntity<EventoDtoOut> getEntity(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.findById(id));
     }
-
+    @Override
     @PutMapping("/{id}")
-    public ResponseEntity<EventoDtoUpdateOut> updateEntity(@PathVariable Long id,
-            @RequestBody EventoDtoUpdateOut entity) {
-        return ResponseEntity.ok().body(service.update(entity, id));
+    public ResponseEntity<EventoDtoOut> updateEntity(@PathVariable Long id,
+            @RequestBody EventoDtoIn entity) {
+        return ResponseEntity.ok().body(service.update(id,entity));
     }
 
     @PostMapping
@@ -66,11 +66,6 @@ public class EventosController implements RestControllerNeptune<EventoDtoIn, Eve
         return ResponseEntity.ok().body(service.findAll());
     }
 
-    @Override
-    public ResponseEntity<EventoDtoOut> getEntity(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEntity'");
-    }
 
 
 }

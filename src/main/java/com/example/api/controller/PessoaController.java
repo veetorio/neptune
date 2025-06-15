@@ -37,39 +37,35 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn,Pesso
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<PessoaDtoOut> getEntity(Long id) {
+    public ResponseEntity<PessoaDtoOut> getEntity(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PessoaDtoOut> updateEntity(@RequestBody PessoaDtoIn entity,@PathVariable Long id) {
-        return ResponseEntity.ok().body(service.update(entity, id));
-    }
-
+    
     @Override
     @PostMapping
     public ResponseEntity<PessoaDtoOut> createEntity(@RequestBody PessoaDtoIn entity) {
-       return ResponseEntity.ok().body(service.create(entity));
+        return ResponseEntity.ok().body(service.create(entity));
     }
-
+    
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEntity(@PathVariable Long id) {
         return ResponseEntity.ok(service.delete(id));
     }
-
+    
     @Override
     @GetMapping
     public ResponseEntity<List<PessoaDtoOut>> getAllEntitys() {
         return ResponseEntity.ok().body(service.findAll());
     }
-
- 
-    @PostMapping("/subscribe")
-    public ResponseEntity<String> subscribe(@RequestParam(name="event") Long eventId ,@RequestParam(name="user") Long userId) {
-        service.subscribe(eventId, userId);
-        return ResponseEntity.ok().body("create");
-    }
     
+    @Override
+    @PutMapping("/{id}")
+    public ResponseEntity<PessoaDtoOut> updateEntity(@PathVariable Long id,@RequestBody PessoaDtoIn entity) {
+        return ResponseEntity.ok().body(service.update(id,entity));
+    }
+
+
     
 }

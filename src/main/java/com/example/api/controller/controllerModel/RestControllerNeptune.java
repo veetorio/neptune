@@ -13,4 +13,5 @@ public interface RestControllerNeptune <DTOIN,DTOOUT> {
     ResponseEntity<List<DTOOUT>> getAllEntitys();
     public ResponseEntity<DTOOUT> createEntity(DTOIN entity);
     public ResponseEntity<String> deleteEntity(Long id);
+    public ResponseEntity<DTOOUT> updateEntity(Long id,DTOIN entity);
 }

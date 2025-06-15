@@ -1,7 +1,6 @@
 package com.example.api.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +33,11 @@ public class Pessoa {
     @ManyToMany(mappedBy="escricoes")
     private List<Evento> eventos = new ArrayList<Evento>();
 
-    private LocalDate nascimento;
+    @Nullable
+    @ManyToMany(mappedBy="inscritos")
+    private List<Projetos> projetos = new ArrayList<Projetos>();
 
-    private int idade;
+    private LocalDate nascimento;
 
     private String local;
 

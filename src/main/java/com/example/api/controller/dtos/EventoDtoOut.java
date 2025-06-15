@@ -18,5 +18,6 @@ public class EventoDtoOut {
 
     private List<PessoaSimples> escricoes;
     private int arrecadacao;
+    private int investido;
 
 }
