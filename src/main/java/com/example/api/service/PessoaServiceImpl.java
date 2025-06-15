@@ -18,14 +18,13 @@ import com.example.api.repository.EventoRepository;
 import com.example.api.repository.PessoaRepository;
 import com.example.api.service.interfaces.ServiceInterface;
 
-
 @Service
 @Transactional
-public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDtoIn> {
+public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaDtoIn> {
     @Autowired
     private PessoaRepository repository;
 
-    @Autowired 
+    @Autowired
     private PessoaMapper mapper;
 
     @Override
@@ -33,9 +32,9 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
         try {
             Pessoa pessoa = mapper.mapperDTOoriginIn(entity);
             PessoaDtoOut pessoaOut = mapper.mapToDtoOut(pessoa);
-        
+
             repository.save(pessoa);
-            int idade = Period.between(pessoa.getNascimento(),LocalDate.now()).getYears();
+            int idade = Period.between(pessoa.getNascimento(), LocalDate.now()).getYears();
 
             pessoaOut.setIdade(idade);
             return pessoaOut;
@@ -48,35 +47,41 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
     public List<PessoaDtoOut> findAll() {
 
         return repository
-        .findAll()
-        .stream()
-        .map(e -> {
-            PessoaDtoOut p = mapper.mapToDtoOut(e);
-            int idade = Period.between(e.getNascimento(),LocalDate.now()).getYears();
-            p.setIdade(idade);
-            return p;
-        })
-        .toList();
+                .findAll()
+                .stream()
+                .map(e -> {
+                    PessoaDtoOut p = mapper.mapToDtoOut(e);
+                    if (e.getNascimento() != null) {
+                        int idade = Period.between(e.getNascimento(), LocalDate.now()).getYears();
+                        p.setIdade(idade);
+                    } else {
+                        p.setIdade(0); // Ou zero, ou algum valor padrão
+                    }
+                    return p;
+                })
+                .toList();
 
     }
+
     @Override
     public PessoaDtoOut findById(Long id) {
         Pessoa pessoa = repository.findById(id).orElseThrow();
         return mapper.mapToDtoOut(pessoa);
     }
+
     @Override
     public String delete(Long id) {
         try {
             Pessoa p = repository.findById(id).orElseThrow();
             repository.delete(p);
             return "Deletado com sucesso";
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             return "informamos que houver erro na deleção";
         }
     }
 
     @Override
-    public PessoaDtoOut update(Long id,PessoaDtoIn ev) {
+    public PessoaDtoOut update(Long id, PessoaDtoIn ev) {
         Pessoa p = repository.findById(id).orElseThrow();
         p.setAtividade(ev.isAtividade());
         p.setNome(ev.getNome());
@@ -89,9 +94,4 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut,PessoaDt
         return mapper.mapToDtoOut(p);
     }
 
-
-    
-
-    
-    
 }
