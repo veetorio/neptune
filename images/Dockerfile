@@ -14,4 +14,4 @@ RUN ./mvnw clean install -DskipTests
 FROM openjdk:17-jdk-slim
 COPY --from=build /target/*.jar api.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "api.jar"]
+ENTRYPOINT ["java", "-jar", "api.jar","--spring.profiles.active=prod"]
