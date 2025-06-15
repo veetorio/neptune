@@ -1,9 +1,13 @@
 package com.example.api.controller.dtos;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
-@Data
+@Getter // Lombok: gera getters
+@Setter // Lombok: gera setters
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProjetoDtoIn {
     private String nome;
     private String tematica;

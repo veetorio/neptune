@@ -4,9 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter // Lombok: gera getters
+@Setter // Lombok: gera setters
+@NoArgsConstructor(access = AccessLevel.PROTECTED) 
 public class EventoDtoOut {
 
     private Long idEvento;

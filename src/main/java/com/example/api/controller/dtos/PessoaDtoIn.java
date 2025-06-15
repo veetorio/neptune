@@ -1,11 +1,15 @@
 package com.example.api.controller.dtos;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter // Lombok: gera getters
+@Setter // Lombok: gera setters
+@NoArgsConstructor(access = AccessLevel.PROTECTED) 
 public class PessoaDtoIn {
 
     private String nome;

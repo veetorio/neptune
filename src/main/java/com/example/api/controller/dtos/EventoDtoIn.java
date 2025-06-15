@@ -4,9 +4,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+
+@Getter // Lombok: gera getters
+@Setter // Lombok: gera setters
+@NoArgsConstructor(access = AccessLevel.PROTECTED) 
 public class EventoDtoIn {
     private String nome;
     private LocalDate dateGo;
