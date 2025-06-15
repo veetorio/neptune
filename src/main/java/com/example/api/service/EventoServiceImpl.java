@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.api.controller.dtos.EventoDtoIn;
 import com.example.api.controller.dtos.EventoDtoOut;
-import com.example.api.controller.dtos.EventoDtoUpdateOut;
 import com.example.api.mappers.EventosMapper; // ERRADO!
 import com.example.api.model.Evento;
 import com.example.api.repository.EventoRepository;
