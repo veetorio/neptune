@@ -31,11 +31,11 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
     public PessoaDtoOut create(PessoaDtoIn entity) {
         try {
             Pessoa pessoa = mapper.mapperDTOoriginIn(entity);
-            PessoaDtoOut pessoaOut = mapper.mapToDtoOut(pessoa);
-
+            
             repository.save(pessoa);
             int idade = Period.between(pessoa.getNascimento(), LocalDate.now()).getYears();
-
+            PessoaDtoOut pessoaOut = mapper.mapToDtoOut(pessoa);
+            
             pessoaOut.setIdade(idade);
             return pessoaOut;
         } catch (RuntimeException e) {
