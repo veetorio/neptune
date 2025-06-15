@@ -1,13 +1,13 @@
-# Estágio de build
-FROM maven:3.9-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
+# Etapa de build
+FROM ubuntu:latest AS BUILD
 
-# Estágio de produção
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
-COPY --from=build /app/target/api-0.0.1-SNAPSHOT.jar app.jar
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
+COPY . .
+
+RUN apt-get install maven -y
+RUN mvn clean install -DskipTests
+# RUN ./mvnw clean install -DskipTests
 
 
 # Etapa de runtime
