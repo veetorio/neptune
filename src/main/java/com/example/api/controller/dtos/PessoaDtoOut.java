@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,8 @@ import lombok.Setter;
 
 @Getter // Lombok: gera getters
 @Setter // Lombok: gera setters
-@NoArgsConstructor(access = AccessLevel.PROTECTED) 
+@NoArgsConstructor(access = AccessLevel.PUBLIC) 
+@AllArgsConstructor // Opcional: se precisar de construtor com todos os campos
 public class PessoaDtoOut {
     private Long id;
     

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,8 @@ import lombok.Setter;
 
 @Getter // Lombok: gera getters
 @Setter // Lombok: gera setters
-@NoArgsConstructor(access = AccessLevel.PROTECTED) 
+@AllArgsConstructor // Opcional: se precisar de construtor com todos os campos
+@NoArgsConstructor(access = AccessLevel.PUBLIC) 
 public class EventoDtoIn {
     private String nome;
     private LocalDate dateGo;
