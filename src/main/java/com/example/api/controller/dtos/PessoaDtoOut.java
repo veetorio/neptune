@@ -28,5 +28,4 @@ public class PessoaDtoOut {
 
     private LocalDate nascimento;
 
-    private List<EventoDtoOut> eventos;
 }

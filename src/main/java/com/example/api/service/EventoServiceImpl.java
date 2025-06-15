@@ -11,7 +11,6 @@ import com.example.api.controller.dtos.EventoDtoOut;
 import com.example.api.mappers.EventosMapper; // ERRADO!
 import com.example.api.model.Evento;
 import com.example.api.repository.EventoRepository;
-import com.example.api.service.interfaces.ServiceEventos;
 import com.example.api.service.interfaces.ServiceInterface;
 
 import jakarta.transaction.Transactional;
@@ -29,7 +28,7 @@ public class EventoServiceImpl implements ServiceInterface<EventoDtoOut, EventoD
     public EventoDtoOut create(EventoDtoIn event) {
         try {
             Evento entity = mapper.mapperDTOoriginIn(event);
-            entity.setInvestido(entity.getInvestido().multiply(BigDecimal.TEN));
+            entity.setInvestido(event.getInvestido().multiply(BigDecimal.TEN));
             entity = repository.save(entity);
 
             return mapper.mapToDtoOut(entity);
