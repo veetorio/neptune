@@ -1,5 +1,6 @@
 package com.example.api.controller.dtos;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -14,6 +15,6 @@ public class EventoDtoIn {
     private LocalTime timeEnd;
     private boolean atividade;
 
-    private float investido;
-    private float arrecadacao;
+    private BigDecimal investido;
+    private BigDecimal arrecadacao;
 }

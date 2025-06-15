@@ -1,5 +1,6 @@
 package com.example.api.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class EventoServiceImpl implements ServiceInterface<EventoDtoOut, EventoD
     public EventoDtoOut create(EventoDtoIn event) {
         try {
             Evento entity = mapper.mapperDTOoriginIn(event);
-            entity.setInvestido(entity.getInvestido() * 100);
+            entity.setInvestido(entity.getInvestido().multiply(BigDecimal.TEN));
             entity = repository.save(entity);
 
             return mapper.mapToDtoOut(entity);
@@ -67,11 +68,12 @@ public class EventoServiceImpl implements ServiceInterface<EventoDtoOut, EventoD
 
     @Override
     public EventoDtoOut update(Long id, EventoDtoIn ev) {
+        BigDecimal baseTen = BigDecimal.TEN;
         try {
             Evento evento = repository.findById(id).orElseThrow();
-            evento.setArrecadacao(ev.getArrecadacao() * 100);
+            evento.setArrecadacao(ev.getArrecadacao().multiply(baseTen));
             evento.setAtividade(ev.isAtividade());
-            evento.setInvestido(ev.getInvestido() * 100);
+            evento.setInvestido(ev.getInvestido().multiply(baseTen));
             evento.setDateGo(ev.getDateGo());
             evento.setDateEnd(ev.getDateEnd());
             evento.setTimeGo(ev.getTimeGo());

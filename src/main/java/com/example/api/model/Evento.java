@@ -1,5 +1,6 @@
 package com.example.api.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -41,8 +42,8 @@ public class Evento {
     @Column(name="horario_de_termino")
     private LocalTime timeEnd;
 
-    private int arrecadacao; // em centavos 
-    private int investido; // em centavos
+    private BigDecimal arrecadacao; // em centavos 
+    private BigDecimal investido; // em centavos
     private boolean atividade;
 
     @Nullable
