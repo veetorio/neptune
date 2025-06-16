@@ -2,7 +2,6 @@
 package com.example.api.controller.dtos;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
