@@ -19,6 +19,7 @@ import com.example.api.controller.controllerModel.RestControllerNeptune;
 import com.example.api.controller.dtos.PessoaDtoIn;
 import com.example.api.controller.dtos.PessoaDtoOut;
 import com.example.api.model.Pessoa;
+import com.example.api.repository.PessoaRepository;
 import com.example.api.service.PessoaServiceImpl;
 import com.example.api.utils.LoggerWatcher;
 
@@ -34,6 +35,9 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn, Pess
     @Autowired
     private PessoaServiceImpl service;
 
+    @Autowired
+    private PessoaRepository controller; 
+
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<PessoaDtoOut> getEntity(@PathVariable Long id) {
@@ -46,7 +50,7 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn, Pess
         p.setNome("TESTE");
         p.setNascimento(LocalDate.now());
         p.setLocal("TESTE");
-        repository.save(p);
+        controller.save(p);
         return ResponseEntity.ok("Persistência testada");
     }
 
