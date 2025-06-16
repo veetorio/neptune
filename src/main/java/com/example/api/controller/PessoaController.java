@@ -1,5 +1,6 @@
 package com.example.api.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.api.controller.controllerModel.RestControllerNeptune;
 import com.example.api.controller.dtos.PessoaDtoIn;
 import com.example.api.controller.dtos.PessoaDtoOut;
+import com.example.api.model.Pessoa;
 import com.example.api.service.PessoaServiceImpl;
 import com.example.api.utils.LoggerWatcher;
 
 import jakarta.transaction.Transactional;
-
 
 @LoggerWatcher
 @RestController
 @RequestMapping("/pessoa")
 @Transactional
 @CrossOrigin("*")
-public class PessoaController implements RestControllerNeptune<PessoaDtoIn,PessoaDtoOut> {
+public class PessoaController implements RestControllerNeptune<PessoaDtoIn, PessoaDtoOut> {
 
     @Autowired
     private PessoaServiceImpl service;
@@ -39,31 +40,38 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn,Pesso
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    
+    @PostMapping("/test-persist")
+    public ResponseEntity<String> testPersist() {
+        Pessoa p = new Pessoa();
+        p.setNome("TESTE");
+        p.setNascimento(LocalDate.now());
+        p.setLocal("TESTE");
+        repository.save(p);
+        return ResponseEntity.ok("Persistência testada");
+    }
+
     @Override
     @PostMapping
     public ResponseEntity<PessoaDtoOut> createEntity(@RequestBody PessoaDtoIn entity) {
         return ResponseEntity.ok().body(service.create(entity));
     }
-    
+
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEntity(@PathVariable Long id) {
         return ResponseEntity.ok(service.delete(id));
     }
-    
+
     @Override
     @GetMapping
     public ResponseEntity<List<PessoaDtoOut>> getAllEntitys() {
         return ResponseEntity.ok().body(service.findAll());
     }
-    
+
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<PessoaDtoOut> updateEntity(@PathVariable Long id,@RequestBody PessoaDtoIn entity) {
-        return ResponseEntity.ok().body(service.update(id,entity));
+    public ResponseEntity<PessoaDtoOut> updateEntity(@PathVariable Long id, @RequestBody PessoaDtoIn entity) {
+        return ResponseEntity.ok().body(service.update(id, entity));
     }
 
-
-    
 }

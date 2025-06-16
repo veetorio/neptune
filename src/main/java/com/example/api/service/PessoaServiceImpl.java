@@ -12,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.api.controller.dtos.PessoaDtoIn;
 import com.example.api.controller.dtos.PessoaDtoOut;
 import com.example.api.mappers.PessoaMapper;
-import com.example.api.model.Evento;
 import com.example.api.model.Pessoa;
-import com.example.api.repository.EventoRepository;
 import com.example.api.repository.PessoaRepository;
 import com.example.api.service.interfaces.ServiceInterface;
 
