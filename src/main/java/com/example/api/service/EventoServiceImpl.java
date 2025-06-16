@@ -27,12 +27,12 @@ public class EventoServiceImpl implements ServiceInterface<EventoDtoOut, EventoD
     @Override
     public EventoDtoOut create(EventoDtoIn event) {
         try {
-            Evento entity = mapper.mapperDTOoriginIn(event);
+            Evento entity = mapper.mapToOrigin(event);
             entity.setInvestido(event.getInvestido().multiply(BigDecimal.TEN));
             entity = repository.save(entity);
             
 
-            return mapper.mapToDtoOut(entity);
+            return mapper.mapToOut(entity);
             // return null;
         } catch (Exception e) {
             System.out.println("Error em criar evento");
@@ -47,7 +47,7 @@ public class EventoServiceImpl implements ServiceInterface<EventoDtoOut, EventoD
             return repository
                     .findAll()
                     .stream()
-                    .map(e -> mapper.mapToDtoOut(e))
+                    .map(e -> mapper.mapToOut(e))
                     .toList();
         } catch (Exception e) {
             System.out.println("Error em pegar evento" + e.getLocalizedMessage());
@@ -78,7 +78,7 @@ public class EventoServiceImpl implements ServiceInterface<EventoDtoOut, EventoD
             evento.setDateEnd(ev.getDateEnd());
             evento.setTimeGo(ev.getTimeGo());
             evento.setTimeEnd(ev.getTimeEnd());
-            return mapper.mapToDtoOut(evento);
+            return mapper.mapToOut(evento);
 
         } catch (RuntimeException a) {
             return null;

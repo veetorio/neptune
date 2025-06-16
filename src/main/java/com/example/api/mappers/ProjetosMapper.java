@@ -8,6 +8,9 @@ import com.example.api.controller.dtos.ProjetoDtoOut;
 import com.example.api.model.Projetos;
 
 @Mapper(componentModel=MappingConstants.ComponentModel.SPRING)
-public interface ProjetosMapper extends MapperCaseOut<Projetos,ProjetoDtoOut> ,MapperCaseIn<ProjetoDtoIn,Projetos>{
+public interface ProjetosMapper {
+    Projetos mapToOrigin(ProjetoDtoIn dtoin); 
+    ProjetoDtoOut mapToOut(Projetos dtoin); 
+
     
 }

@@ -25,9 +25,9 @@ public class ProjetoService implements ServiceInterface<ProjetoDtoOut, ProjetoDt
     public ProjetoDtoOut create(ProjetoDtoIn event) {
         try {
             Projetos p = mapper
-                    .mapperDTOoriginIn(event);
+                    .mapToOrigin(event);
             repository.save(p);
-            return mapper.mapToDtoOut(p);
+            return mapper.mapToOut(p);
         } catch (RuntimeException e) {
             System.out.println(e.getLocalizedMessage());
             return null;
@@ -39,14 +39,14 @@ public class ProjetoService implements ServiceInterface<ProjetoDtoOut, ProjetoDt
         return repository
             .findAll()
             .stream()
-            .map(e -> mapper.mapToDtoOut(e))
+            .map(e -> mapper.mapToOut(e))
             .toList();
     }
 
     @Override
     public ProjetoDtoOut findById(Long id) {
         return mapper
-            .mapToDtoOut(
+            .mapToOut(
                 repository
                     .findById(id)
                     .orElseThrow()
@@ -65,7 +65,7 @@ public class ProjetoService implements ServiceInterface<ProjetoDtoOut, ProjetoDt
         projetos.setNome(entity.getNome());
         projetos.setTematica(entity.getTematica());
 
-        return mapper.mapToDtoOut(projetos);
+        return mapper.mapToOut(projetos);
     }
 
 }

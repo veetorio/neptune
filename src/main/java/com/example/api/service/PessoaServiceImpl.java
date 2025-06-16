@@ -28,11 +28,11 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
     @Override
     public PessoaDtoOut create(PessoaDtoIn entity) {
         try {
-            Pessoa pessoa = mapper.mapperDTOoriginIn(entity);
+            Pessoa pessoa = mapper.mapToOrigin(entity);
             
             repository.save(pessoa);
             int idade = Period.between(pessoa.getNascimento(), LocalDate.now()).getYears();
-            PessoaDtoOut pessoaOut = mapper.mapToDtoOut(pessoa);
+            PessoaDtoOut pessoaOut = mapper.mapToOut(pessoa);
             
             pessoaOut.setIdade(idade);
             return pessoaOut;
@@ -48,7 +48,7 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
                 .findAll()
                 .stream()
                 .map(e -> {
-                    PessoaDtoOut p = mapper.mapToDtoOut(e);
+                    PessoaDtoOut p = mapper.mapToOut(e);
                     if (e.getNascimento() != null) {
                         int idade = Period.between(e.getNascimento(), LocalDate.now()).getYears();
                         p.setIdade(idade);
@@ -64,7 +64,7 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
     @Override
     public PessoaDtoOut findById(Long id) {
         Pessoa pessoa = repository.findById(id).orElseThrow();
-        return mapper.mapToDtoOut(pessoa);
+        return mapper.mapToOut(pessoa);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
 
         repository.save(p);
 
-        return mapper.mapToDtoOut(p);
+        return mapper.mapToOut(p);
     }
 
 }
