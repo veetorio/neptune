@@ -14,6 +14,7 @@ import lombok.Data;
 
 
 @Data
+@Entity
 public class Pessoa {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
