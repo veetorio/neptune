@@ -30,6 +30,7 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
         try {
             System.out.println(entity.toString());
             Pessoa pessoa = mapper.mapToOrigin(entity);
+            System.out.println(pessoa.toString());
 
             repository.save(pessoa);
 
