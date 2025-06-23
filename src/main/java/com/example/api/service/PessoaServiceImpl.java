@@ -37,6 +37,7 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
             pessoaOut.setIdade(idade);
             return pessoaOut;
         } catch (RuntimeException e) {
+            System.out.println(e.getLocalizedMessage());
             return null;
         }
     }

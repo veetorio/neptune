@@ -44,15 +44,6 @@ public class PessoaController implements RestControllerNeptune<PessoaDtoIn, Pess
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @PostMapping("/test-persist")
-    public ResponseEntity<String> testPersist() {
-        Pessoa p = new Pessoa();
-        p.setNome("TESTE");
-        p.setNascimento(LocalDate.now());
-        p.setLocal("TESTE");
-        controller.save(p);
-        return ResponseEntity.ok("Persistência testada");
-    }
 
     @Override
     @PostMapping
