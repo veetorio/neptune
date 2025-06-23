@@ -29,18 +29,20 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
     public PessoaDtoOut create(PessoaDtoIn entity) {
         try {
             Pessoa pessoa = mapper.mapToOrigin(entity);
-            
-            
+
             repository.save(pessoa);
 
             PessoaDtoOut pessoaOut = mapper.mapToOut(pessoa);
 
-            LocalDate nascimento = pessoa.getNascimento() == null ? pessoa.getNascimento() : LocalDate.now();
+            if (pessoa.getNascimento() == null) {
+                pessoaOut.setIdade(0);
+            } else {
+                LocalDate nascimento = pessoa.getNascimento() != null ? pessoa.getNascimento() : LocalDate.now();
+                int idade = Period.between(nascimento, LocalDate.now()).getYears();
+                pessoaOut.setIdade(idade);
 
-            int idade = Period.between(nascimento, LocalDate.now()).getYears();
-            
-            pessoaOut.setIdade(idade);
-            
+            }
+
             return pessoaOut;
         } catch (RuntimeException e) {
             System.out.println(e.getLocalizedMessage());

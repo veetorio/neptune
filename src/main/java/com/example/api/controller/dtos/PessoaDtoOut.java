@@ -2,18 +2,10 @@
 package com.example.api.controller.dtos;
 
 import java.time.LocalDate;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 
-@Getter // Lombok: gera getters
-@Setter // Lombok: gera setters
-@NoArgsConstructor(access = AccessLevel.PUBLIC) 
-@AllArgsConstructor // Opcional: se precisar de construtor com todos os campos
+@Data // Opcional: se precisar de construtor com todos os campos
 public class PessoaDtoOut {
     private Long id;
     
@@ -26,5 +18,45 @@ public class PessoaDtoOut {
     private boolean atividade;
 
     private LocalDate nascimento;
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public boolean isAtividade() {
+        return atividade;
+    }
+
+    public void setAtividade(boolean atividade) {
+        this.atividade = atividade;
+    }
+
+    public LocalDate getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(LocalDate nascimento) {
+        this.nascimento = nascimento;
+    }
 
 }
