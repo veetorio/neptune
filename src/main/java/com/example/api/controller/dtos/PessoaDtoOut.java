@@ -22,12 +22,6 @@ public class PessoaDtoOut {
 
     private LocalDate nascimento;
 
-    public PessoaDtoOut(Pessoa p){
-        this.nome = p.getNome();
-        this.local = p.getLocal();
-        this.atividade = p.isAtividade();
-        this.nascimento = p.getNascimento();
-    }
 
     public int getIdade() {
         return idade;
