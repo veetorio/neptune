@@ -4,16 +4,9 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter // Lombok: gera getters
-@Setter // Lombok: gera setters
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@AllArgsConstructor // Opcional: se precisar de construtor com todos os campos
+@Data // Opcional: se precisar de construtor com todos os campos
 public class PessoaDtoIn {
 
     private String nome;
