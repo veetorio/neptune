@@ -27,4 +27,5 @@ public class EventoDtoOut {
     private int arrecadacao;
     private int investido;
 
+    
 }

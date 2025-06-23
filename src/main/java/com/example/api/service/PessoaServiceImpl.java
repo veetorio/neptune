@@ -28,6 +28,7 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
     @Override
     public PessoaDtoOut create(PessoaDtoIn entity) {
         try {
+            System.out.println(entity.toString());
             Pessoa pessoa = mapper.mapToOrigin(entity);
 
             repository.save(pessoa);

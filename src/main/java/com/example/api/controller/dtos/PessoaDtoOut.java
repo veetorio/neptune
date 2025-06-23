@@ -2,6 +2,9 @@
 package com.example.api.controller.dtos;
 
 import java.time.LocalDate;
+
+import com.example.api.model.Pessoa;
+
 import lombok.Data;
 
 
@@ -18,6 +21,13 @@ public class PessoaDtoOut {
     private boolean atividade;
 
     private LocalDate nascimento;
+
+    public PessoaDtoOut(Pessoa p){
+        this.nome = p.getNome();
+        this.local = p.getLocal();
+        this.atividade = p.isAtividade();
+        this.nascimento = p.getNascimento();
+    }
 
     public int getIdade() {
         return idade;
