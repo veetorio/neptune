@@ -10,14 +10,9 @@ import com.example.api.model.Pessoa;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface PessoaMapper {
-    @Mapping(source = "nascimento", target = "nascimento")
-    @Mapping(source = "atividade", target = "atividade")
-    @Mapping(source = "local", target = "local")
-    @Mapping(source = "senha", target = "senha")
-    @Mapping(target = "eventos", ignore = true)
-    @Mapping(target = "projetos", ignore = true)
     Pessoa mapToOrigin(PessoaDtoIn dtoin);
 
+    @Mapping(target = "idade",ignore = true)
     PessoaDtoOut mapToOut(Pessoa entity);
 
 }
