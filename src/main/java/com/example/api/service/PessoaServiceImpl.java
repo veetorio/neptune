@@ -30,11 +30,17 @@ public class PessoaServiceImpl implements ServiceInterface<PessoaDtoOut, PessoaD
         try {
             Pessoa pessoa = mapper.mapToOrigin(entity);
             
+            
             repository.save(pessoa);
-            int idade = Period.between(pessoa.getNascimento(), LocalDate.now()).getYears();
+
             PessoaDtoOut pessoaOut = mapper.mapToOut(pessoa);
+
+            LocalDate nascimento = pessoa.getNascimento() == null ? pessoa.getNascimento() : LocalDate.now();
+
+            int idade = Period.between(nascimento, LocalDate.now()).getYears();
             
             pessoaOut.setIdade(idade);
+            
             return pessoaOut;
         } catch (RuntimeException e) {
             System.out.println(e.getLocalizedMessage());
