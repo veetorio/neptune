@@ -14,6 +14,8 @@ public interface PessoaMapper {
     @Mapping(source = "atividade", target = "atividade")
     @Mapping(source = "local", target = "local")
     @Mapping(source = "senha", target = "senha")
+    @Mapping(target = "eventos", ignore = true)
+    @Mapping(target = "projetos", ignore = true)
     Pessoa mapToOrigin(PessoaDtoIn dtoin);
 
     PessoaDtoOut mapToOut(Pessoa entity);
