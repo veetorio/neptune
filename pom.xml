@@ -105,12 +105,6 @@
 				<version>${project.parent.version}</version>
 				<configuration>
 					<mainClass>com.example.api.ApiApplication</mainClass>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
 				</configuration>
 				<executions>
 					<execution>
