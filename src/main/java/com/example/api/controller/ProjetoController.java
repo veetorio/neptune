@@ -23,7 +23,7 @@ import jakarta.transaction.Transactional;
 
 
 @RestController
-@RequestMapping("/projetos")
+@RequestMapping("/projeto")
 @LoggerWatcher
 @Transactional
 @CrossOrigin("*")

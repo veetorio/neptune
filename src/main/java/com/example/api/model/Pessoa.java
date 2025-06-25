@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.micrometer.common.lang.Nullable;
+import com.example.api.controller.dtos.PessoaDtoIn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,17 +24,17 @@ public class Pessoa {
 
     private String senha;
     
-    @Nullable
     @ManyToMany(mappedBy="escricoes")
     private List<Evento> eventos = new ArrayList<Evento>();
 
-    @Nullable
     @ManyToMany(mappedBy="inscritos")
-    private List<Projetos> projetos = new ArrayList<Projetos>();
+    private List<Projeto> projetos = new ArrayList<Projeto>();
 
     private LocalDate nascimento;
 
     private String local;
 
     private boolean atividade;
+
+
 }

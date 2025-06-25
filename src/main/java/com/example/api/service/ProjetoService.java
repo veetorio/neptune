@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.api.controller.dtos.ProjetoDtoIn;
 import com.example.api.controller.dtos.ProjetoDtoOut;
 import com.example.api.mappers.ProjetosMapper;
-import com.example.api.model.Projetos;
+import com.example.api.model.Projeto;
 import com.example.api.repository.ProjetosRepository;
 import com.example.api.service.interfaces.ServiceInterface;
 
@@ -24,7 +24,7 @@ public class ProjetoService implements ServiceInterface<ProjetoDtoOut, ProjetoDt
     @Override
     public ProjetoDtoOut create(ProjetoDtoIn event) {
         try {
-            Projetos p = mapper
+            Projeto p = mapper
                     .mapToOrigin(event);
             repository.save(p);
             return mapper.mapToOut(p);
@@ -61,11 +61,11 @@ public class ProjetoService implements ServiceInterface<ProjetoDtoOut, ProjetoDt
 
     @Override
     public ProjetoDtoOut update(Long id, ProjetoDtoIn entity) {
-        Projetos projetos = repository.findById(id).orElseThrow();
-        projetos.setNome(entity.getNome());
-        projetos.setTematica(entity.getTematica());
+        Projeto projeto = repository.findById(id).orElseThrow();
+        projeto.setNome(entity.getNome());
+        projeto.setTematica(entity.getTematica());
 
-        return mapper.mapToOut(projetos);
+        return mapper.mapToOut(projeto);
     }
 
 }

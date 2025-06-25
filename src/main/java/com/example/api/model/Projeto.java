@@ -20,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Projetos {
+public class Projeto {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -31,7 +31,7 @@ public class Projetos {
 
     @ManyToMany
     @JoinTable(
-        name="Projetos_Pessoa",
+        name="projeto_Pessoa",
         joinColumns=@JoinColumn(name="fkProjetos"),
         inverseJoinColumns=@JoinColumn(name="fkPessoa")
     )
