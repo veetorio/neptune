@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.api.controller.controllerModel.RestControllerNeptune;
 import com.example.api.controller.dtos.ProjetoDtoIn;
 import com.example.api.controller.dtos.ProjetoDtoOut;
-import com.example.api.service.ProjetoService;
+import com.example.api.service.ProjetoServiceImpl;
 import com.example.api.utils.LoggerWatcher;
 
 import jakarta.transaction.Transactional;
@@ -29,30 +29,30 @@ import jakarta.transaction.Transactional;
 @CrossOrigin("*")
 public class ProjetoController implements RestControllerNeptune<ProjetoDtoIn,ProjetoDtoOut> {
     @Autowired
-    private ProjetoService projetoService;
+    private ProjetoServiceImpl projetoServiceImpl;
 
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<ProjetoDtoOut> getEntity(@PathVariable Long id) {
-        return ResponseEntity.ok().body(projetoService.findById(id));
+        return ResponseEntity.ok().body(projetoServiceImpl.findById(id));
     }
 
     @Override
     @GetMapping
     public ResponseEntity<List<ProjetoDtoOut>> getAllEntitys() {
-        return ResponseEntity.ok().body(projetoService.findAll());
+        return ResponseEntity.ok().body(projetoServiceImpl.findAll());
     }
 
     @Override
     @PostMapping
     public ResponseEntity<ProjetoDtoOut> createEntity(@RequestBody ProjetoDtoIn entity) {
-        return ResponseEntity.status(201).body(projetoService.create(entity));
+        return ResponseEntity.status(201).body(projetoServiceImpl.create(entity));
     }
 
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEntity(@PathVariable Long id) {
-        return ResponseEntity.ok().body(projetoService.delete(id));
+        return ResponseEntity.ok().body(projetoServiceImpl.delete(id));
     }
 
     @Override

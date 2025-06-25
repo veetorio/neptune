@@ -13,7 +13,7 @@ import com.example.api.repository.ProjetosRepository;
 import com.example.api.service.interfaces.ServiceInterface;
 
 @Service
-public class ProjetoService implements ServiceInterface<ProjetoDtoOut, ProjetoDtoIn> {
+public class ProjetoServiceImpl implements ServiceInterface<ProjetoDtoOut, ProjetoDtoIn> {
 
     @Autowired
     private ProjetosRepository repository;

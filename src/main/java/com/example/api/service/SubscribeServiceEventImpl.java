@@ -2,6 +2,7 @@ package com.example.api.service;
 
 import java.util.NoSuchElementException;
 
+import com.example.api.service.interfaces.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,13 @@ import com.example.api.repository.EventoRepository;
 import com.example.api.repository.PessoaRepository;
 
 @Service
-public class SubscribeService {
+public class SubscribeServiceEventImpl implements SubscribeService {
     @Autowired
     private PessoaRepository repository;
     @Autowired
     private EventoRepository EventoRepository;
 
+    @Override
     public void subscribe(Long eventId, Long usuarioId) {
         try {
             Pessoa p = repository.findById(usuarioId).orElseThrow();
@@ -31,5 +33,4 @@ public class SubscribeService {
             System.out.println("Elemento não foi encontrado");
         }
     }
-
 }
